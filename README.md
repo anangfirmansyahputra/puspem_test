@@ -1,3 +1,4 @@
+Teknologi yang digunakan
 - Laravel Version : 12
 - PHP Version : 8.4
 - Node JS Version : v20.15.1
