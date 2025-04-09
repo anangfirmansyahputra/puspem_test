@@ -7,6 +7,7 @@ use App\Mail\ComplaintMail;
 use App\Models\Complaint;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Enum;
@@ -55,7 +56,11 @@ class ComplaintController extends Controller
         $data['user_id'] = Auth::user()->id;
 
         Complaint::create($data);
-        Mail::to($user->email)->send(new ComplaintMail(['name' => $user->name]));
+        try {
+            Mail::to($user->email)->send(new ComplaintMail(['name' => $user->name]));
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+        }
 
         return to_route('complaints.index');
     }
