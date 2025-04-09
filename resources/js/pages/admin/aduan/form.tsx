@@ -21,10 +21,10 @@ const breadcrumbs: BreadcrumbItem[] = [
   },
   {
     title: 'Aduan',
-    href: route('complaints.index'),
+    href: route('admin.complaints.index'),
   },
   {
-    title: 'Tambah Aduan',
+    title: 'Response dan Feedback',
     href: route('complaints.create'),
   },
 ];
