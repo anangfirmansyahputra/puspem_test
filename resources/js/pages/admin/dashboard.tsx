@@ -10,7 +10,12 @@ const breadcrumbs: BreadcrumbItem[] = [
   },
 ];
 
-export default function Dashboard() {
+interface DashboardProps {
+  complaints: number;
+  users: number;
+}
+
+export default function Dashboard({ complaints, users }: DashboardProps) {
   return (
     <AppLayout breadcrumbs={breadcrumbs}>
       <Head title="Dashboard" />
@@ -22,7 +27,7 @@ export default function Dashboard() {
               <Newspaper />
             </div>
             <div className="p-6 pt-0">
-              <div className="text-2xl font-bold">5</div>
+              <div className="text-2xl font-bold">{complaints}</div>
             </div>
           </div>
           <div className="bg-card text-card-foreground rounded-xl border shadow">
@@ -31,7 +36,7 @@ export default function Dashboard() {
               <User />
             </div>
             <div className="p-6 pt-0">
-              <div className="text-2xl font-bold">50</div>
+              <div className="text-2xl font-bold">{users}</div>
             </div>
           </div>
         </div>

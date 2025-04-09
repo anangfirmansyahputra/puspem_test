@@ -36,6 +36,11 @@ export function AppSidebar() {
             href: '/dashboard/complaints',
             icon: Newspaper,
           },
+          {
+            title: 'Response',
+            href: '/dashboard/responses',
+            icon: Newspaper,
+          },
         ];
 
   return (

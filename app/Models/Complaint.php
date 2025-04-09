@@ -13,4 +13,9 @@ class Complaint extends Model
         'status',
         'file_path'
     ];
+
+    public function responses()
+    {
+        return $this->hasMany(ComplaintResponse::class)->latest();
+    }
 }
