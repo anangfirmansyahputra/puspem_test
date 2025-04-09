@@ -7,14 +7,14 @@ use Inertia\Inertia;
 
 Route::get("/", [TimelineController::class, 'index'])->name('home');
 
-Route::middleware(['auth'])->prefix("dashboard")->group(function () {
+Route::middleware(['auth', 'role:REPORTER'])->prefix("dashboard")->group(function () {
     Route::get('/', function () {
         return Inertia::render('dashboard');
     })->name('dashboard');
     Route::resource('complaints', ComplaintController::class);
 });
 
-Route::middleware(['auth'])->prefix("admin")->group(function () {
+Route::middleware(['auth', 'role:ADMIN'])->prefix("admin")->group(function () {
     Route::get('/', function () {
         return Inertia::render('admin/dashboard');
     })->name('admin');
