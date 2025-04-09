@@ -1,8 +1,8 @@
-Laravel Version : 12
-PHP Version : 8.4
-Node JS Version : v20.15.1
-NPM Version : 10.9.0
-React Version : 19.0.0
+- Laravel Version : 12
+- PHP Version : 8.4
+- Node JS Version : v20.15.1
+- NPM Version : 10.9.0
+- React Version : 19.0.0
 
 Intruksi menjalankan project
 1. Jalankan php artisan migrate
