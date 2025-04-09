@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Enums\ComplaintStatus;
+use App\Mail\ComplaintMail;
 use App\Models\Complaint;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Enum;
 use Inertia\Inertia;
@@ -37,6 +39,8 @@ class ComplaintController extends Controller
      */
     public function store(Request $request)
     {
+        $user = Auth::user();
+
         $data = $request->validate([
             'title' => "required|string|min:6",
             "description" => "required|string|min:6",
@@ -51,6 +55,7 @@ class ComplaintController extends Controller
         $data['user_id'] = Auth::user()->id;
 
         Complaint::create($data);
+        Mail::to($user->email)->send(new ComplaintMail(['name' => $user->name]));
 
         return to_route('complaints.index');
     }
