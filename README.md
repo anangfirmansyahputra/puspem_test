@@ -13,8 +13,8 @@ Intruksi menjalankan project
 6. Jalankan php artisan serve dan juga npm run dev
 
 Untuk pengiriman email, saya menggunakan Mailtrap, jika berkenan bisa menggunakan credentials pemeriksa, apabila tidak berkenan, bisa menggunakan sandbox credentials saya dibawah ini
-MAIL_MAILER=smtp
-MAIL_HOST=sandbox.smtp.mailtrap.io
-MAIL_PORT=2525
-MAIL_USERNAME=a4f3337be6905d
-MAIL_PASSWORD=df94e22ffaa9bc
+- MAIL_MAILER=smtp
+- MAIL_HOST=sandbox.smtp.mailtrap.io
+- MAIL_PORT=2525
+- MAIL_USERNAME=a4f3337be6905d
+- MAIL_PASSWORD=df94e22ffaa9bc
