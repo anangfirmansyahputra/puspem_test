@@ -42,6 +42,8 @@ export default function AduanPage({ responses }: AduanPageProps) {
               <TableHead>Status</TableHead>
               <TableHead>Response</TableHead>
               <TableHead>Feedback</TableHead>
+              <TableHead>Ditutup</TableHead>
+
               <TableHead className="text-right">Aksi</TableHead>
             </TableRow>
           </TableHeader>
@@ -52,9 +54,10 @@ export default function AduanPage({ responses }: AduanPageProps) {
                 <TableCell>{response.complaint.status}</TableCell>
                 <TableCell>{response.response}</TableCell>
                 <TableCell>{response.feedback ?? '-'}</TableCell>
+                <TableCell>{response.complaint.closed ? 'Iya' : 'Tidak'}</TableCell>
                 <TableCell className="space-x-2 text-right">
                   <Button
-                    disabled={response.feedback ? true : false}
+                    disabled={response.complaint.closed ? true : response.feedback ? true : false}
                     variant={'default'}
                     onClick={() => router.visit(route('responses.show', response.id))}
                   >

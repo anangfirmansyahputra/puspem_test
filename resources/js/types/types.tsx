@@ -5,6 +5,7 @@ export type Complaint = {
   status: 'PENDING' | 'VERIFIED' | 'REJECTED';
   file_path: string;
   created_at: Date;
+  closed: boolean;
 };
 
 export type ComplaintResponse = {

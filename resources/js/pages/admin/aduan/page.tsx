@@ -38,6 +38,7 @@ export default function AduanPage({ complaints }: AduanPageProps) {
               <TableHead>Judul</TableHead>
               <TableHead>Status</TableHead>
               <TableHead>Deskripsi</TableHead>
+              <TableHead>Ditutup</TableHead>
               <TableHead>File</TableHead>
               <TableHead className="text-right">Aksi</TableHead>
             </TableRow>
@@ -48,6 +49,7 @@ export default function AduanPage({ complaints }: AduanPageProps) {
                 <TableCell className="font-medium">{complaint.title}</TableCell>
                 <TableCell>{complaint.status}</TableCell>
                 <TableCell>{complaint.description}</TableCell>
+                <TableCell>{complaint.closed ? 'Iya' : 'Tidak'}</TableCell>
                 <TableCell>
                   <a href={`/storage/${complaint.file_path}`} download>
                     <Button size={'sm'} variant={'ghost'}>
@@ -57,7 +59,12 @@ export default function AduanPage({ complaints }: AduanPageProps) {
                   </a>
                 </TableCell>
                 <TableCell className="space-x-2 text-right">
-                  <Button size={'sm'} variant={'outline'} onClick={() => router.visit(route('admin.complaints.show', complaint.id))}>
+                  <Button
+                    disabled={complaint.closed}
+                    size={'sm'}
+                    variant={'outline'}
+                    onClick={() => router.visit(route('admin.complaints.show', complaint.id))}
+                  >
                     <Edit /> Response dan Feedback
                   </Button>
                 </TableCell>

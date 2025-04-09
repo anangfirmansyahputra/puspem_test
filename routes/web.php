@@ -17,6 +17,7 @@ Route::middleware(['auth', 'role:REPORTER'])->prefix("dashboard")->group(functio
     Route::get("/responses", [ResponseController::class, 'index'])->name('responses.index');
     Route::get("/responses/{id}", [ResponseController::class, 'showResponse'])->name('responses.show');
     Route::post("/responses/{id}", [ResponseController::class, 'feedback'])->name('responses.feedback');
+    Route::post("/closed/{id}", [ResponseController::class, 'closed'])->name('responses.closed');
 });
 
 Route::middleware(['auth', 'role:ADMIN'])->prefix("admin")->group(function () {

@@ -7,7 +7,7 @@ import { Separator } from '@/components/ui/separator';
 import AppLayout from '@/layouts/app-layout';
 import { BreadcrumbItem } from '@/types';
 import { ComplaintResponse } from '@/types/types';
-import { Head, router, useForm } from '@inertiajs/react';
+import { Head, useForm } from '@inertiajs/react';
 import { LoaderCircle } from 'lucide-react';
 import { FormEventHandler } from 'react';
 import toast from 'react-hot-toast';
@@ -49,6 +49,14 @@ export default function Feedback({ response }: FeedbackProps) {
     });
   };
 
+  const handleClosed = () => {
+    post(route('responses.closed', response.id), {
+      onSuccess: () => {
+        toast.success('Berhasil menutup aduan');
+      },
+    });
+  };
+
   return (
     <AppLayout breadcrumbs={breadcrumbs}>
       <Head title="Feedback" />
@@ -79,16 +87,9 @@ export default function Feedback({ response }: FeedbackProps) {
                   {processing && <LoaderCircle className="h-4 w-4 animate-spin" />}
                   Submit
                 </Button>
-                <Button
-                  onClick={() => router.visit(route('admin.complaints.index'))}
-                  type="button"
-                  className="mt-2 w-full"
-                  tabIndex={3}
-                  disabled={processing}
-                  variant={'outline'}
-                >
+                <Button onClick={handleClosed} type="button" className="mt-2 w-full" tabIndex={3} disabled={processing} variant={'destructive'}>
                   {processing && <LoaderCircle className="h-4 w-4 animate-spin" />}
-                  Cancel
+                  Tutup aduan
                 </Button>
               </div>
             </div>

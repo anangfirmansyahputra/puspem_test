@@ -68,6 +68,10 @@ class ComplaintController extends Controller
      */
     public function edit(Complaint $complaint)
     {
+        if ($complaint->closed) {
+            return redirect()->route('complaints.index');
+        }
+
         return Inertia::render("reporter/aduan/form", [
             'complaint' => $complaint
         ]);

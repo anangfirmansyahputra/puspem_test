@@ -24,6 +24,9 @@ class AdminComplaintController extends Controller
     public function show(string $id)
     {
         $complaint = Complaint::with('responses')->findOrFail($id);
+        if ($complaint->closed) {
+            return redirect()->route("admin.complaints.index");
+        }
 
         return Inertia::render("admin/aduan/form", [
             'complaint' => $complaint

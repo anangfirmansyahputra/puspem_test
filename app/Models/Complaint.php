@@ -11,7 +11,8 @@ class Complaint extends Model
         'title',
         'description',
         'status',
-        'file_path'
+        'file_path',
+        'closed'
     ];
 
     public function responses()

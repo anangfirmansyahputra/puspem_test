@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Complaint;
 use App\Models\ComplaintResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,7 +27,10 @@ class ResponseController extends Controller
 
     public function showResponse(Request $request, string $id)
     {
-        $response = ComplaintResponse::findOrFail($id);
+        $response = ComplaintResponse::with('complaint')->findOrFail($id);
+        if ($response->complaint->closed) {
+            return redirect()->route("responses.index");
+        }
 
         return Inertia::render('reporter/response/form', [
             'response' => $response
@@ -43,6 +47,20 @@ class ResponseController extends Controller
         ]);
 
         $response->update($data);
+
+        return redirect()->route("responses.index");
+    }
+
+    public function closed(Request $request, string $id)
+    {
+        $response = ComplaintResponse::findOrFail($id);
+
+        $complaint = Complaint::findOrFail($response->complaint_id);
+
+        $complaint->update([
+            'closed' => true,
+        ]);
+
 
         return redirect()->route("responses.index");
     }
